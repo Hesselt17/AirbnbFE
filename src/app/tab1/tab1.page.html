@@ -39,7 +39,7 @@
 
     <main class="grid">
 
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details " *ngFor="let lst of listing" slot="start">
+        <button style="background-color:white" *ngFor="let lst of listing" (click)="navDetails(lst)" slot="start">
             <img src={{lst.image}}>
             <ion-card>
                 <ion-card-header>
