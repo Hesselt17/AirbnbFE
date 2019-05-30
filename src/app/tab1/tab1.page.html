@@ -22,12 +22,6 @@
         </ion-list-header>
     </ion-list>
 
-    <ion-list>
-        <ion-chip *ngFor="let lst of listing" slot="start">
-            {{lst.address}}
-        </ion-chip>
-    </ion-list>
-
     <style>
         .grid {
             display: grid;
@@ -44,72 +38,18 @@
     </style>
 
     <main class="grid">
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-            <img src="https://www.quickenloans.com/blog/wp-content/uploads/2016/11/gray-house-with-green-lawn-e1478724365131.jpg ">
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-title>House #1</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        Relevant house info.
-                    </ion-card-content>
-                </ion-card>
-         </button>
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_WUk78MLV2gwhx0v_IX_ScrsjRFC_NF69SfPQ52gIvwA4OzNY">
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-title>House #2</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        Relevant house info.
-                    </ion-card-content>
-                </ion-card>
-        </button>
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-            <img src="http://www.trentwilliamsconstruction.com/images/parade-of-homes-2007-twcm-02.jpg ">                    
+
+        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details " *ngFor="let lst of listing" slot="start">
+            <img src={{lst.image}}>
             <ion-card>
                 <ion-card-header>
-                    <ion-card-title>House #3</ion-card-title>
+                    <ion-card-title>{{lst.address}}</ion-card-title>
                 </ion-card-header>
-                    <ion-card-content>
-                        Relevant house info.
-                    </ion-card-content>
-                </ion-card>
+                <ion-card-content>
+                    Relevant house info.
+                </ion-card-content>
+            </ion-card>
         </button>
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmzounCPzcrndcLkEwr9uQdxPABsgMPiXid4r8ITyEd0mYHKUd">
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-title>House #4</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                        Relevant house info.
-                    </ion-card-content>
-                </ion-card>
-        </button>
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-                <img src="https://i.pinimg.com/originals/f4/98/c2/f498c2becb7840e40b272eb4ade26b33.jpg">
-                    <ion-card>
-                        <ion-card-header>
-                            <ion-card-title>House #5</ion-card-title>
-                        </ion-card-header>
-                        <ion-card-content>
-                            Relevant house info.
-                        </ion-card-content>
-                    </ion-card>
-            </button>
-        <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details ">
-                    <img src="https://www.brickunderground.com/sites/default/files/styles/blog_primary_image/public/blog/images/110718_dallasmain.jpg">
-                        <ion-card>
-                            <ion-card-header>
-                                <ion-card-title>House #6</ion-card-title>
-                            </ion-card-header>
-                            <ion-card-content>
-                                Relevant house info.
-                            </ion-card-content>
-                        </ion-card>
-                </button>
     </main>
 
 </ion-content>
