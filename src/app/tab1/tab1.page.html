@@ -22,6 +22,12 @@
         </ion-list-header>
     </ion-list>
 
+    <ion-list>
+        <ion-chip *ngFor="let lst of listing" slot="start">
+            {{lst.address}}
+        </ion-chip>
+    </ion-list>
+
     <style>
         .grid {
             display: grid;
@@ -105,4 +111,5 @@
                         </ion-card>
                 </button>
     </main>
+
 </ion-content>
