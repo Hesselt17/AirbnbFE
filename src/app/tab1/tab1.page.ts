@@ -16,7 +16,7 @@ export class Tab1Page {
 
   constructor(
     private navCtrl : NavController,
-    private lstService: PropertyService    //Potentially change the property.service
+    private lstService: PropertyService  
   ) {
 
     // let lst1 = new listing();

@@ -8,7 +8,7 @@
 
 <ion-content>
     <ion-searchbar animated placeholder='Try "Vancouver"'></ion-searchbar>
-    <ion-segment>
+    <ion-segment padding>
         <ion-segment-button value="Dates">
             Dates
         </ion-segment-button>
@@ -40,7 +40,7 @@
     <main class="grid">
 
         <button style="background-color:white" *ngFor="let lst of listings" (click)="navDetails(lst)" slot="start">
-            <img src={{lst.image}}>
+            <img src={{lst.image}} width="480px" height="200px" >
             <ion-card>
                 <ion-card-header>
                     <ion-card-title>{{lst.address}}</ion-card-title>
