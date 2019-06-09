@@ -12,7 +12,7 @@
             <img src="https://media.wired.com/photos/5c83219a692d1216df5ce666/master/pass/Transpo-Elon-Musk-RTX6P9YW.jpg">
         </ion-avatar>
         <ion-label>
-            <ion-title><b>Tommy Hessel</b>
+            <ion-title><b>{{user.name}}</b>
                 <!-- Name : {{user.name}} To fetch info from user object -->
             </ion-title>
         </ion-label>
@@ -44,7 +44,10 @@
                 <ion-card-title>Contact Info</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-                Email - hesselt17@gmail.com
+                {{user.email}}
+            </ion-card-content>
+            <ion-card-content>
+                {{user.role}}
             </ion-card-content>
             <ion-card-content>
                 Cell - 214-412-0878
