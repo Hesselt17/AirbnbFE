@@ -16,7 +16,7 @@ export class Tab1Page {
 
   constructor(
     private navCtrl : NavController,
-    private lstService: PropertyService  
+    private lstService: PropertyService, 
   ) {
 
     // let lst1 = new listing();
@@ -58,13 +58,25 @@ export class Tab1Page {
 
     //Method call from service takes care of ^ construction
     //console.log(this.lstService);
-    this.lstService.getAllProperties();
-    this.listings = this.lstService.listings;
+
+    const listingCallback = (err, Plistings) => {
+      if (err) {
+        alert(err.error.message);
+        return;
+      }
+      console.log(Plistings);
+      this.listings = Plistings;
+    };
+
+    this.lstService.getAllProperties(listingCallback);
+    //this.listings = this.lstService.listings;
 
 
   }
 
   navDetails(lst : listing){
+    const propertyID = lst.id;
+    localStorage.setItem("property_id", String(propertyID));
     this.navCtrl.navigateForward("details", {
       queryParams: {
         q: "ionic",

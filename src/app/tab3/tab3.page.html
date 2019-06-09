@@ -16,7 +16,7 @@
                 Not currently on a trip.
             </ion-card-content>
         </ion-card>
-        <ion-button href="/tabs/tab1"> Explore Airbnb </ion-button>
+        <ion-button (click)= "navToExplore()"> Explore Airbnb </ion-button>
     </ion-list>
 
     <ion-item lines="none">
@@ -44,7 +44,7 @@
         <main class="grid">
 
             <button style="background-color:white" onclick=" window.location.href='details' ; " block href="details " *ngFor="let lst of listing" slot="start">
-                        <img src={{lst.image}}>
+                        <img src={{lst.imageUrl}}>
                         <ion-card>
                             <ion-card-header>
                                 <ion-card-title>{{lst.address}}</ion-card-title>

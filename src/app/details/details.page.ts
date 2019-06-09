@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { listing } from '../models';
 import { PropertyService } from '../services/property.service';
 import { NavController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { booking } from '../models/booking';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-details',
@@ -11,15 +14,15 @@ import { NavController } from '@ionic/angular';
 })
 export class DetailsPage implements OnInit {
 
-  private lstID : number;
-  public address : string;
-  public currentListing : listing;
-
+  public property: listing = new listing();
+  public booking: booking = new booking();
+  public user : User = new User();
   
   constructor(
     private activatedRoute: ActivatedRoute,
     private lstService : PropertyService,
-    private navCtrl : NavController
+    private navCtrl : NavController,
+    private httpC : HttpClient
   ) { 
 
     // let lst1 = new listing();
@@ -41,11 +44,55 @@ export class DetailsPage implements OnInit {
     // this.listings.push(lst2);
     // this.listings.push(lst3);
 
+    const userID = localStorage.getItem("user_id");
+    console.log("User ID: ", userID);
+    this.user.ID = Number(userID);
 
-    //This is what makes constructor now
-    this.lstService.getAllProperties();
+    const propertyID = localStorage.getItem("property_id");
+    console.log("Property ID: ", propertyID);
+
+    if (propertyID) {
+      this.httpC.get("http://localhost:3000/api/property/" + propertyID)
+        .subscribe(
+          (response : any /*or user*/) => {
+            console.log(response); //Access the express res.json({id:4, name:""...})
+            //response.name;
+            this.property.id = response.id;
+            this.property.name = response.name;
+            this.property.address = response.address;
+            this.property.price = response.price;
+            this.property.imageUrl = response.imageUrl;
+            this.property.location = response.location;
+          }
+        ); 
+    }
+    else{
+
+    }
 
 
+  }
+
+  navToExplore(){
+    this.navCtrl.navigateBack("tabs/tab1");
+  }
+
+  bookNow(){
+    this.booking.propertyID = this.property.id;
+    this.booking.userID = this.user.ID;
+
+    this.httpC.post("http://localhost:3000/api/property/" + this.property.id + "/booking", this.booking) //need to express path in api
+    .subscribe(
+      (response : any) => {
+        console.log(response);
+        alert ("Booking successful");
+      },
+      err => {
+        const errorMess= err['error'];
+        console.log(err);
+          alert("Failed to Book");
+      });
+      console.log(this.booking);
   }
 
   ngOnInit() {
@@ -55,31 +102,24 @@ export class DetailsPage implements OnInit {
     // console.log(data);
 
 
-    let arrow = (data: any) => {
-      this.address = data.params.address;
-      this.lstID = data.params.lstID;
+    // let arrow = (data: any) => {
+    //   //console.log(data);
+    //   console.log(data.get("lstID")); //or userID
+    //   this.address = data.params.address;
+    //   this.lstID = data.params.lstID;
 
-    //Find property by ID hardcoded now one line function
-    // this.listings.forEach(
-    //   (lst: listing) => {
-    //     if (lst.id == this.lstID){
-    //       this.currentListing = lst;
-    //     }
-    //   }
-    // )
-
-    this.currentListing = this.lstService.findLstByID(this.lstID);
-    if (this.currentListing == null){
-      alert("Property Not Found!")
-      this.navCtrl.navigateBack("tab1");
-    }
-    };
+    // this.currentListing = this.lstService.findLstByID(this.lstID);
+    // if (this.currentListing == null){
+    //   alert("Property Not Found!")
+    //   this.navCtrl.navigateBack("tab1");
+    // }
+    // };
 
 
-    this.activatedRoute.queryParamMap.subscribe(
-      //receivedQueryParams
-      arrow
-    );
+    // this.activatedRoute.queryParamMap.subscribe(   //callback of type param map
+    //   //receivedQueryParams
+    //   arrow
+    // );
   }
 
 }

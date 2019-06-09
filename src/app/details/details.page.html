@@ -1,11 +1,11 @@
 <ion-header>
     <ion-toolbar>
         <ion-item lines=none>
-            <ion-button href="/tabs/tab1" fill=clear>
+            <ion-button (click)= "navToExplore()" fill=clear>
                 <ion-icon slot="icon-only" name="arrow-back">
                 </ion-icon>
             </ion-button>
-            <ion-title *ngIf="currentListing">{{currentListing.address}}</ion-title>
+            <ion-title *ngIf="property">{{property.address}}</ion-title>
         </ion-item>
     </ion-toolbar>
 </ion-header>
@@ -13,10 +13,25 @@
 <ion-content>
 
     <ion-item-sliding>
-        <img src={{currentListing.image}} width="480px" height="270px" padding>
-        <ion-card-content>Book House: {{currentListing.address}} b/c it is awesome.</ion-card-content>
+        <img src={{property.imageUrl}} width="480px" height="270px" padding>
+        <ion-card-content>Book House: {{property.address}} b/c it is awesome.</ion-card-content>
     </ion-item-sliding>
-    <ion-button value="Dates">
+
+    <!-- [(ngModel)]= "currentUser.name"  -->
+    <ion-list>
+            <ion-item>
+                <ion-label>Enter Date</ion-label>
+                <ion-datetime display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]= "booking.dateTo" placeholder="Arrive On (MM/DD/YYYY)" clearInput></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]= "booking.dateFrom" placeholder="Depart On (MM/DD/YYYY)" clearInput></ion-input>
+            </ion-item>
+        </ion-list>
+
+    <ion-button value="Dates" (click)="bookNow()">
         Book Now
     </ion-button>
 </ion-content>
