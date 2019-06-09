@@ -63,6 +63,7 @@ export class DetailsPage implements OnInit {
             this.property.price = response.price;
             this.property.imageUrl = response.imageUrl;
             this.property.location = response.location;
+            this.property.description = response.description;
           }
         ); 
     }

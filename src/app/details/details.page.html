@@ -12,10 +12,15 @@
 
 <ion-content>
 
-    <ion-item-sliding>
-        <img src={{property.imageUrl}} width="480px" height="270px" padding>
-        <ion-card-content>Book House: {{property.address}} b/c it is awesome.</ion-card-content>
-    </ion-item-sliding>
+        <ion-item-sliding>
+                <img src={{property.imageUrl}} width="480px" height="270px" padding>
+                <ion-card-content>Rental ImageUrl: {{property.imageUrl}}</ion-card-content>
+                <ion-card-content>Rental Name: {{property.name}}</ion-card-content>
+                <ion-card-content>Rental Location: {{property.location}}</ion-card-content>
+                <ion-card-content>Rental Address: {{property.address}}</ion-card-content>
+                <ion-card-content>Rental Price: {{property.price}}</ion-card-content>
+                <ion-card-content>Rental Description: {{property.description}}</ion-card-content>
+        </ion-item-sliding>
 
     <!-- [(ngModel)]= "currentUser.name"  -->
     <ion-list>
